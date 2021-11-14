@@ -7,6 +7,31 @@
 #include <string>
 using namespace std;
 
+//default constructor
+Fraction::Fraction(){
+    numerator=0;
+    denominator=0;
+}
+
+ostream& operator<<(ostream& output, const Fraction& fract){
+    char slash='/';
+    output<<fract.numerator;
+    output<<slash;
+    output<<fract.denominator;
+    return output;
+
+}
+
+istream& operator>>(istream& input, Fraction& fract){
+    char slash='/';
+    input>> fract.numerator;
+    input>>slash;
+    input>>fract.denominator;
+
+    return input;
+}
+
+
 // Find the greatest common denominator (GCD)
 // For reducing
 int Fraction::getGCD(int num1, int num2)
@@ -17,14 +42,153 @@ int Fraction::getGCD(int num1, int num2)
 	return num1;
 }
 
+
 // Reduce/simplify a fraction
 void Fraction::reduce()
 {
+    Fraction fraction;
 	// Alter this function later to adjust for negative values
 	int gcd = getGCD(numerator, denominator);
 	numerator /= gcd;
 	denominator /= gcd;
+
+    if(this->numerator<0&&this->denominator>0){
+        this->numerator=this->numerator*1;
+        this->denominator=this->denominator*1;
+    }
+
+
+    (this->numerator<0&&this->denominator>0)==(this->numerator<0&&this->denominator<0);
+
+    (this->numerator<0&&this->denominator<0)==(this->numerator<0&&this->denominator>0);
+
+
+
+
 }
+
+
+
+
+int Fraction::getLCD(int num1, int num2){
+    if(num1!=num2){
+        if(num1>num2) {
+            if (num1 % num2 == 0) {
+
+            return num1 / num2;
+            }else{
+                return num1;
+            }
+        }
+        if(num1<num2){
+            if(num2%num1==0){
+                return num2/num1;
+            }else{
+                return num2;
+            }
+        }
+
+    }
+
+
+}
+
+
+
+const Fraction Fraction::operator+(Fraction rhs){
+    Fraction result;
+    this->reduce();
+    rhs.reduce();
+
+    if(this->denominator!=rhs.denominator){
+        int fract1numeratorA=this->numerator*rhs.denominator;
+        int fract1denominatorA=this->denominator*rhs.denominator;
+
+        int rhsnumeratorA=rhs.numerator*this->denominator;
+        int rhsdenominatorA=rhs.denominator*this->denominator;
+
+
+        result.numerator=fract1numeratorA+rhsnumeratorA;
+        result.denominator=fract1denominatorA;
+        result.reduce();
+        return result;
+
+    }
+
+    if(this->denominator==rhs.denominator){
+        result.numerator=this->numerator+rhs.numerator;
+        result.denominator=this->denominator;
+        result.reduce();
+        return result;
+    }
+
+}
+
+
+const Fraction Fraction::operator-(Fraction rhs){
+    Fraction result;
+    this->reduce();
+    rhs.reduce();
+
+    if(this->denominator!=rhs.denominator){
+        int fract1numeratorA=this->numerator*rhs.denominator;
+        int fract1denominatorA=this->denominator*rhs.denominator;
+
+
+        int rhsnumeratorA=rhs.numerator*this->denominator;
+        int rhsdenominatorA=rhs.denominator*this->denominator;
+
+
+
+        result.numerator=fract1numeratorA-rhsnumeratorA;
+        result.denominator=fract1denominatorA;
+        result.reduce();
+        return result;
+    }
+
+    if(this->denominator==rhs.denominator){
+        result.numerator=this->numerator-rhs.numerator;
+        result.denominator=this->denominator;
+        if((result.numerator=this->numerator-rhs.numerator)==0){
+            result.numerator=0;
+            result.denominator=0;
+            return result;
+
+        }else{
+            result.reduce();
+            return result;
+        }
+    }
+}
+
+const Fraction Fraction::operator*(Fraction rhs){
+    Fraction result;
+
+    result.numerator=this->numerator*rhs.numerator;
+    result.denominator=this->denominator*rhs.denominator;
+
+    result.reduce();
+    return result;
+}
+
+const Fraction Fraction::operator/(const Fraction rhs){
+    Fraction result;
+    result.numerator=this->numerator*rhs.denominator;
+    result.denominator=this->denominator*rhs.numerator;
+
+    result.reduce();
+    return result;
+}
+
+bool Fraction::operator==(const Fraction rhs){
+
+    //this->reduce();
+    //rhs.reduce();
+
+    return ((this->numerator==rhs.numerator)&&(this->denominator==rhs.denominator));
+}
+
+
 
 /* 
 General pattern for overloaded operators: 
