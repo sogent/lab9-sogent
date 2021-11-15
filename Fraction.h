@@ -35,7 +35,7 @@ public:
     const Fraction operator/(Fraction rhs);
     bool operator==(const Fraction rhs);
     int getGCD(int num1, int num2);
-    int getLCD(int num1, int num2);
+
 
     int numerator;
     int denominator;

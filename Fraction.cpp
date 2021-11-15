@@ -63,35 +63,9 @@ void Fraction::reduce()
     (this->numerator<0&&this->denominator<0)==(this->numerator<0&&this->denominator>0);
 
 
-
-
 }
 
 
-
-
-int Fraction::getLCD(int num1, int num2){
-    if(num1!=num2){
-        if(num1>num2) {
-            if (num1 % num2 == 0) {
-
-            return num1 / num2;
-            }else{
-                return num1;
-            }
-        }
-        if(num1<num2){
-            if(num2%num1==0){
-                return num2/num1;
-            }else{
-                return num2;
-            }
-        }
-
-    }
-
-
-}
 
 
 
@@ -109,7 +83,9 @@ const Fraction Fraction::operator+(Fraction rhs){
 
 
         result.numerator=fract1numeratorA+rhsnumeratorA;
+        result.numerator=result.numerator*-1;
         result.denominator=fract1denominatorA;
+        result.denominator=result.denominator*-1;
         result.reduce();
         return result;
 
@@ -167,6 +143,9 @@ const Fraction Fraction::operator*(Fraction rhs){
     result.numerator=this->numerator*rhs.numerator;
     result.denominator=this->denominator*rhs.denominator;
 
+    result.numerator=result.numerator;
+    result.denominator=result.denominator;
+
     result.reduce();
     return result;
 }
@@ -175,6 +154,9 @@ const Fraction Fraction::operator/(const Fraction rhs){
     Fraction result;
     result.numerator=this->numerator*rhs.denominator;
     result.denominator=this->denominator*rhs.numerator;
+
+    result.numerator=result.numerator*-1;
+    result.denominator=result.denominator*-1;
 
     result.reduce();
     return result;

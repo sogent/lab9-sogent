@@ -51,11 +51,6 @@ int main() {
     }
 
 
-
-
-
-
-
 	// While there's data in the file, read in a line and calculate it
 	while (fin.good())
 	{
@@ -73,17 +68,14 @@ int main() {
 		{
 		case '+':
 			fout << fract1 + fract2 << endl;
-            //cout<<fract1+fract2<<endl;
 			break;
 
 		case '-':
 			fout << fract1 - fract2 << endl;
-            //cout<<fract1-fract2<<endl;
 			break;
 
 		case '*':
 			fout << fract1 * fract2 << endl;
-                //cout<<fract1*fract2<<endl;
 			break;
 
 		case '/':

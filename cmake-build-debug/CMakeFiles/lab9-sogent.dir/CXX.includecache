@@ -6,15 +6,17 @@
 
 #IncludeRegexTransform: 
 
-/Users/sogent/CLionProjects/lab9-sogent/Fraction.cpp
+/Users/sogent/CLionProjects/lab9-sogent/Fraction.h
+iostream
+-
+
+/Users/sogent/CLionProjects/lab9-sogent/Lab10.cpp
 Fraction.h
 /Users/sogent/CLionProjects/lab9-sogent/Fraction.h
 iostream
 -
-string
+fstream
 -
-
-/Users/sogent/CLionProjects/lab9-sogent/Fraction.h
-iostream
+string
 -
 
