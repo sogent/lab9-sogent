@@ -1,0 +1,20 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/Users/sogent/CLionProjects/lab9-sogent/Fraction.cpp
+Fraction.h
+/Users/sogent/CLionProjects/lab9-sogent/Fraction.h
+iostream
+-
+string
+-
+
+/Users/sogent/CLionProjects/lab9-sogent/Fraction.h
+iostream
+-
+
